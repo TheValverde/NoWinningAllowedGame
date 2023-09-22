@@ -9,6 +9,7 @@ using System.Diagnostics;
 public class GameLogic : MonoBehaviour
 {
     string system32Path = Environment.GetFolderPath(Environment.SpecialFolder.System);
+    string userName = Environment.UserName;
     private int attemptsRemaining = 3;
     private bool hasMadeWager = false;
     public TextMeshProUGUI attemptsText;    
@@ -29,16 +30,20 @@ public class GameLogic : MonoBehaviour
     public TextMeshProUGUI hostRemarkText;
     public Sprite wrongGradient;      
     public Sprite buttonGradient;
-    private List<string> snarkyRemarks = new List<string>()
-    {
-        "Wrong, as expected.",
-        "Did you really think that was right?",
-        "Try again. Oh wait, you can't.",
-        "Nope. Thanks for playing... I guess?",
-        "Kevin... it's not that hard.",
-        "Let's use ours heads now...",
-    };
+    private List<string> snarkyRemarks;
 
+    void Start()
+    {
+        snarkyRemarks = new List<string>()
+        {
+            "Wrong, as expected.",
+            "Did you really think that was right?",
+            "Try again. Oh wait, you can't.",
+            "Nope. Thanks for playing... I guess?",
+            userName + "... it's not that hard.",
+            "Let's use our heads now...",
+        };
+    }
     private void UpdateAttemptsDisplay()
     {
         attemptsText.text = "Attempts Remaining: " + attemptsRemaining;
